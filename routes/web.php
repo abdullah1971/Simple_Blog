@@ -18,3 +18,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/create_post',function(){
+// 	return view('createPost');
+// })->name('create_post');
+
+// Route::get('/post/create', function(){
+// 	return view('createPost');
+// })->name('post/create');
+
+// Route::post('/post', function(){
+// 	return "string";
+// })->name('post');
+
+Route::resource('post','postController');
+
+
