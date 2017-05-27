@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     @section('cssFiles')
         @show
 </head>
@@ -79,6 +80,24 @@
                         @endif
                     </ul>
                 </div>
+            </div>
+
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li @yield('item1Active')>
+                        <a href="{{ "../post" }}"><i class="fa fa-globe"></i> All</a>
+                    </li>
+                    <li @yield('item2Active')>
+                        <a href="{{ "../published/post" }}"><i class="fa fa-fw fa-newspaper-o"></i> Published</a>
+                    </li>
+                    <li @yield('item3Active')>
+                        <a href="{{ "../drafted/post" }}"><i class="fa fa-fw fa-floppy-o"></i> Draft</a>
+                    </li>
+                    <li @yield('item4Active')>
+                        <a href="{{ "../personal/post" }}"><i class="fa fa-user"></i> Personal</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\User;
 use Auth;
@@ -16,7 +17,14 @@ class postController extends Controller
      */
     public function index()
     {
-        return "string";
+    	$post = new Post;
+    	$posts = $post::WHERE('user_id',Auth::User()->id)->get();
+
+    	$person = new User;
+    	$user = $person::find(Auth::User()->id)->name;
+
+    	$selectMenu = "All";
+        return view('posts.usersAllPost', compact(['posts','user','selectMenu']));
     }
 
     /**
@@ -26,8 +34,7 @@ class postController extends Controller
      */
     public function create()
     {
-        return view('createPost');
-        // return "string";
+        return view('posts.createPost');
     }
 
     /**
@@ -38,6 +45,7 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
+    	
         $this->validate($request,[
         	'postHeading' => 'required|string|max:255',
         	'postBody' => 'required',
@@ -51,11 +59,10 @@ class postController extends Controller
         $post->catagory = $request->input('postCatagory');
         $post->status = $request->input('post-type');
         $post->body = $request->input('postBody');
-        // return ;
         
         $post->save();
 
-        return redirect('/home');
+        return redirect('/post');
     }
 
     /**
@@ -64,9 +71,11 @@ class postController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+    	$person = new User;
+    	$user = $person::find(Auth::User()->id)->name;
+        return view('posts.singlePost' , compact(['post','user']));
     }
 
     /**
@@ -75,9 +84,9 @@ class postController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.editPost', compact('post'));
     }
 
     /**
@@ -89,7 +98,25 @@ class postController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+        	'postHeading' => 'required|string|max:255',
+        	'postBody' => 'required',
+        ]);
+
+        $postTable = new Post;
+        $user = new User;
+
+        $post = $postTable::find($id);
+
+        $post->user_id = Auth::User()->id;
+        $post->heading = $request->input('postHeading');
+        $post->catagory = $request->input('postCatagory');
+        $post->status = $request->input('post-type');
+        $post->body = $request->input('postBody');
+        
+        $post->save();
+
+        return redirect('/post');
     }
 
     /**
@@ -100,6 +127,55 @@ class postController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+    	$postTable = new Post;
+
+    	$post = $postTable::find($id);
+    	$post->delete();
+        return redirect('/post');
+    }
+
+    public function published(){
+
+		$post = new Post;
+		$posts = $post::WHERE('user_id',Auth::User()->id)->WHERE('status','publish')->get();
+		
+
+		$person = new User;
+		$user = $person::find(Auth::User()->id)->name;
+
+		$selectMenu = "published";
+	    return view('posts.usersAllPost', compact(['posts','user','selectMenu']));
+
+    }
+
+
+    public function drafted(){
+
+		$post = new Post;
+		$posts = $post::WHERE('user_id',Auth::User()->id)->WHERE('status','draft')->get();
+		
+
+		$person = new User;
+		$user = $person::find(Auth::User()->id)->name;
+
+		$selectMenu = "drafted";
+	    return view('posts.usersAllPost', compact(['posts','user','selectMenu']));
+
+    }
+
+
+    public function personal(){
+
+		$post = new Post;
+		$posts = $post::WHERE('user_id',Auth::User()->id)->WHERE('status','personal')->get();
+		
+
+		$person = new User;
+		$user = $person::find(Auth::User()->id)->name;
+
+		$selectMenu = "personal";
+	    return view('posts.usersAllPost', compact(['posts','user','selectMenu']));
+
     }
 }

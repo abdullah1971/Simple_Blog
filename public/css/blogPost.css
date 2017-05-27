@@ -1,0 +1,25 @@
+#content{
+
+	margin-top: 50px;
+}
+
+#post-heading-section h1{
+	display: inline-block;
+	font-weight: 900;
+	width: 700px;
+}
+
+#post-heading-section form{
+	display: inline-block;
+	margin-top: 22px;
+}
+
+#post-heading-section a{
+
+	color: white;
+	margin: 22px 2px;
+}
+
+ hr{
+    border-top: 2px solid #eee;
+}

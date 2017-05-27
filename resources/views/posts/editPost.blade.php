@@ -1,17 +1,22 @@
 @extends('layouts.app')
 
+@section('myPostURL', '../../post')
+
 @section('makeActive', 'class="active"')
 
 @section('cssFiles')
-	{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 @endsection
 
 
 @section('content')
-	<div class="row">
+	{{-- {{ Route::current()->getName() }} --}}
+	<div class="row" id="content">
 		<div class="col-lg-offset-3 col-lg-6">
 			
-			<form action="../post" method="POST" role="form" style="background-color: white; padding: 50px">
+			<form action="{{ "../../post/".$post->id }}" method="POST" role="form" style="background-color: white; padding: 50px">
+
+				<input name="_method" type="hidden" value="PUT">
 					
 				{{ csrf_field() }}
 
@@ -20,7 +25,7 @@
 				<div class="form-group{{ $errors->has('postHeading') ? ' has-error' : '' }}">
 					<label for="post-heading">Post Heading</label>
 
-					<input type="text" class="form-control" id="post-heading" name="postHeading" placeholder="Post Heading" value="{{ old('postHeading') }}">
+					<input type="text" class="form-control" id="post-heading" name="postHeading" placeholder="Post Heading" value="{{ $post->heading }}">
 
 					@if ($errors->has('postHeading'))
 					    <span class="help-block">
@@ -43,16 +48,16 @@
 
 				<div class="form-group">
 					<label for="post-catagory">Post Status</label><br>
-					<input type="radio" name="post-type" value="publish" checked> Publish<br>
-				    <input type="radio" name="post-type" value="draft"> Draft<br>
-				    <input type="radio" name="post-type" value="personal"> Personal
+					<input type="radio" name="post-type" value="publish" {{ $post->status == "publish" ?"checked" : ""}}> Publish<br>
+				    <input type="radio" name="post-type" value="draft" {{ $post->status == "draft" ?"checked" : ""}}> Draft<br>
+				    <input type="radio" name="post-type" value="personal" {{ $post->status == "personal" ?"checked" : ""}}> Personal
 				</div>
 
 
 				<div class="form-group{{ $errors->has('postBody') ? ' has-error' : '' }}">
 					<label for="post-body">Post Heading</label><br>
 
-					<textarea class="tinyMce" name="postBody" value="{{ old('postBody') }}"></textarea>
+					<textarea class="tinyMce" name="postBody">{!! $post->body !!}</textarea>
 
 					@if ($errors->has('postBody'))
 					    <span class="help-block">
