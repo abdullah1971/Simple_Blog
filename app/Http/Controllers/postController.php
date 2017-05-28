@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\User;
+use App\Comment;
 use Auth;
 
 class postController extends Controller
@@ -75,7 +76,11 @@ class postController extends Controller
     {
     	$person = new User;
     	$user = $person::find(Auth::User()->id)->name;
-        return view('posts.singlePost' , compact(['post','user']));
+
+        $id = $post->id;
+        $comments = Comment::where('post_id',$id)->get();
+        // return $comments;
+        return view('posts.singlePost' , compact(['post','user','comments']));
     }
 
     /**

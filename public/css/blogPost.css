@@ -23,3 +23,19 @@
  hr{
     border-top: 2px solid #eee;
 }
+
+#body-and-comment-separator{
+
+	border-top: 3px solid #99a8af;
+}
+
+.comment-body{
+	
+	display: inline-block;
+	width: 675px;
+}
+
+.comment-section a{
+
+	display: inline-block;
+}

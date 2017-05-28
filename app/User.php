@@ -31,4 +31,8 @@ class User extends Authenticatable
     public function post(){
         return $this->hasOne(Post::class);
     }
+
+    public function comment(){
+        return $this->hasOne(Comment::class);
+    }
 }

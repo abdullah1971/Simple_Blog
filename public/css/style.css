@@ -81,3 +81,15 @@
 	background-color: gray;
 	color: white;
 }
+
+
+#post-heading-section h1,
+#post-heading-section a{
+
+    display: inline-block;
+
+}
+
+#post-heading-section h1{
+    width: 630px;
+}
