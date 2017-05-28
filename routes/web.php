@@ -25,4 +25,9 @@ Route::get('published/post','postController@published');
 Route::get('drafted/post','postController@drafted');
 Route::get('personal/post','postController@personal');
 
+Route::post('search/post', 'HomeController@search');
+
+Route::get('catagory/{catagory}', 'HomeController@catagory');
+Route::get('archive/{year}', 'HomeController@archive');
+
 

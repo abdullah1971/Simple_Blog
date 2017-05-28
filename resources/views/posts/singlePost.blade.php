@@ -12,7 +12,15 @@
 		<div class="row">
 			<div class="col-lg-offset-2 col-lg-8">
 
-				
+				{{-- {{ URL::previous() }} --}}
+
+				{{-- $splitName = explode(' ', URL::previous(), 2); --}}
+
+				{{-- {{ Request::segments() }} --}}
+
+				{{-- {{ $previous }} --}}
+
+				{{Request::segment(1)}}
 
 					<div id="post-heading-section">
 						<h1>{{ $post->heading }}</h1>

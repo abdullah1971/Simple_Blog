@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     public function user(){
-    	return $this->belogsTo(User::class);
+    	return $this->belongsTo(User::class);
     }
 }
