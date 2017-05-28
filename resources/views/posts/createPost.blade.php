@@ -36,10 +36,10 @@
 				<div class="form-group">
 					<label for="postCatagory">Post Catagory</label>&nbsp;&nbsp;&nbsp;&nbsp;
 					<select name="postCatagory">
-					  <option value="science">Science</option>
-					  <option value="literature">Literature</option>
-					  <option value="currentTopic">Current Topic</option>
-					  <option value="religion">Religion</option>
+					  <option value="Science">Science</option>
+					  <option value="Literature">Literature</option>
+					  <option value="Current Topic">Current Topic</option>
+					  <option value="Religion">Religion</option>
 					</select>
 				</div>
 

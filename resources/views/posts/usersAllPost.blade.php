@@ -52,7 +52,7 @@
 						
 					</div>
 					<h4>&nbsp;&nbsp;&nbsp;by</h4>
-					<p><h3>{{ $user }}</h3>( <small><strong>Catagory : </strong><b><a href="">{{ $post->catagory }}</a></b>, <strong>Updated At : </strong><b><i> {{ $post->updated_at->formatLocalized('%A %d %B %Y') }}</i> </b> </small> )</p><hr>
+					<p><h3>{{ $user }}</h3>( <small><strong>Catagory : </strong><b><a href="catagory/{{ $post->catagory }}">{{ $post->catagory }}</a></b>, <strong>Updated At : </strong><b><i> {{ $post->updated_at->formatLocalized('%A %d %B %Y') }}</i> </b> </small> )</p><hr>
 					<p>{!! str_limit($post->body, $limit = 350) !!}</p>
 
 					<a href="{{ "../post/".$post->id }}" class="pull-right">Details>></a><br><br><br>

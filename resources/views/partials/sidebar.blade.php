@@ -1,5 +1,5 @@
 
-<form action="search/post" method="post">
+{{-- <form action="search/post" method="post">
 
 	{{ csrf_field() }}
 
@@ -14,7 +14,7 @@
 	    </div>
 	</div>
 
-</form>
+</form> --}}
 
 
 <div class="catagory">
